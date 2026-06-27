@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Wiki Diseño</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CONFIGURACIÓN GENERAL --- */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #FFFFFF; 
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- ENCABEZADO SUPERIOR (WIKI DISEÑO) --- */
+        .wiki-header-card {
+            background-color: #DBD7F4; 
+            border-radius: 16px;       
+            padding: 22px 25px 16px 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); 
+            font-family: 'Poppins', sans-serif;
+            max-width: 1250px;
+            margin: 20px auto 30px auto;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        .header-main-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 22px;
+        }
+
+        .brand-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+
+        .brand-title {
+            font-size: 34px;
+            font-weight: 700;
+            color: #111111; 
+            margin: 0;
+            line-height: 1.1;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-title span {
+            color: #5B3CC4; 
+        }
+
+        .brand-subtitle {
+            font-family: 'Roboto', sans-serif;
+            font-size: 13px;
+            color: #333333;
+            font-weight: 700; 
+            margin: 0;
+        }
+
+        .right-actions-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .wiki-search-box {
+            background-color: #FFFFFF;
+            border-radius: 8px; 
+            padding: 8px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 360px; 
+        }
+
+        .wiki-search-box input {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            color: #495057;
+        }
+
+        .search-magnifier {
+            color: #4A90E2; 
+            font-size: 15px;
+        }
+
+        /* CORREGIDO: Círculo blanco con opacidad al 50% */
+        .user-profile-circle {
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.5); 
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        /* CORREGIDO: Icono de persona en color morado como el mockup */
+        .user-profile-circle svg {
+            width: 20px;
+            height: 20px;
+            fill: #5B3CC4;
+        }
+
+        .categories-navbar {
+            display: flex;
+            justify-content: center; 
+            flex-wrap: nowrap;       
+            gap: 6px;                
+            width: 100%;
+        }
+
+        .category-tab {
+            background-color: #DBD7F4; 
+            border: 1px solid #111111; 
+            border-radius: 20px; 
+            padding: 5px 10px;       
+            font-family: 'Roboto', sans-serif;
+            font-size: 11.5px;       
+            font-weight: 500;
+            color: #222222;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            white-space: nowrap;     
+            transition: all 0.2s ease;
+        }
+
+        .category-tab.active-tab {
+            background-color: #FFFFFF; 
+            color: #5B3CC4;
+            border-color: #5B3CC4; 
+            position: relative;
+        }
+
+        .category-tab.active-tab::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 20%;
+            width: 60%;
+            height: 2.5px;
+            background-color: #5B3CC4;
+            border-radius: 2px;
+        }
+
+        /* --- CONTENEDOR GENERAL DE LA PÁGINA --- */
+        .wrapper-principal {
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 0 10px 60px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 50px; 
+            width: 100%;
+            box-sizing: border-box;
+            flex-grow: 1;
+        }
+
+        /* SECCIONES ESTRUCTURALES INDEPENDIENTES */
+        .bloque-verde {
+            display: flex;
+            gap: 50px;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        .bloque-morado {
+            width: 100%;
+            border-top: 1px solid #EAEAEA;
+            padding-top: 40px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bloque-tres-seccion {
+            width: 100%;
+            background-color: #FFFFFF; 
+            border-top: 1px solid #EAEAEA;
+            padding-top: 40px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- ESTILOS DEL MENÚ IZQUIERDO --- */
+        .side-navigation-menu {
+            background-color: transparent; 
+            border: none;                  
+            padding: 10px 0;
+            width: 340px; 
+            flex-shrink: 0;
+        }
+
+        .menu-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: #111111;
+            margin-bottom: 25px;
+            padding-left: 5px;
+        }
+
+        .cards-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px; 
+        }
+
+        .nav-card {
+            background-color: #FFFFFF;     
+            border: 3px solid #111111;     
+            border-radius: 18px;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            min-height: 85px; 
+            box-sizing: border-box;
+        }
+
+        .nav-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .card-circle {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            background-color: #DBD7F4; 
+        }
+
+        .card-label {
+            font-family: 'Roboto', sans-serif;
+            font-size: 15px;
+            font-weight: 700; 
+            color: #111111;
+            flex-grow: 1;
+            text-align: center; 
+            padding: 0 10px;
+        }
+
+        /* --- PARTE 1: PANEL DERECHO CON EL ASTRONAUTA --- */
+        .panel-derecho-verde {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            align-items: flex-end; 
+        }
+
+        .caja-astronauta-arriba {
+            width: 100%;
+            max-width: 420px;
+            display: flex;
+        }
+
+        .caja-astronauta-arriba img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .texto-apretado-derecha {
+            width: 100%;
+            max-width: 350px; 
+            font-family: 'Roboto', sans-serif;
+            font-size: 15px;
+            line-height: 1.8;
+            color: #222222;
+            text-align: justify; 
+        }
+
+        .texto-apretado-derecha p {
+            margin: 0 0 20px 0;
+        }
+
+        .texto-apretado-derecha p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* --- ESTILOS DE LA PARTE MORADA (MEDIO) --- */
+        .titulo-seccion-principal {
+            font-family: 'Poppins', sans-serif;
+            font-size: 34px;
+            font-weight: 700;
+            color: #111111;
+            margin: 0 0 25px 0;
+        }
+
+        .fila-inferior-morada {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 45px;
+            width: 100%;
+            margin-top: 25px;
+        }
+
+        .col-imagen-izq {
+            flex-shrink: 0;
+            flex: 1;
+            max-width: 360px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .col-imagen-izq img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 16px;
+        }
+
+        .col-texto-der {
+            flex: 1.3;
+        }
+
+        /* --- FILA DE DOS COLUMNAS DE LA PARTE 3 --- */
+        .fila-dos-columnas-estructural {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start; 
+            justify-content: space-between;
+            gap: 45px;
+            width: 100%;
+        }
+
+        .col-texto-ancho {
+            flex: 1.4;
+        }
+
+        .col-media-derecha {
+            flex: 1;
+            max-width: 440px; 
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .video-real-element {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid #EAEAEA;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            background-color: #000000;
+            display: block;
+        }
+
+        /* Primera lista sin puntos y alineada al borde */
+        .lista-sin-puntos-fiel {
+            list-style-type: none; 
+            margin: 0 0 20px 0;
+            padding-left: 0; 
+        }
+
+        .lista-sin-puntos-fiel li {
+            margin-bottom: 0px; 
+            padding-bottom: 2px;
+            font-weight: 400; 
+        }
+
+        /* Segunda lista (mantiene puntos/viñetas pero junta) */
+        .lista-con-puntos-compacta {
+            list-style-type: disc;
+            margin: 0 0 20px 0;
+            padding-left: 20px;
+        }
+
+        .lista-con-puntos-compacta li {
+            margin-bottom: 0px; 
+            padding-bottom: 2px;
+            font-weight: 400; 
+        }
+
+        /* --- PIE DE PÁGINA --- */
+        .wiki-footer {
+            background-color: #DBD7F4; 
+            color: #111111;
+            padding: 40px 0 20px 0;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        .footer-main-row {
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start; 
+            box-sizing: border-box;
+            margin-bottom: 30px;
+        }
+
+        .footer-brand-block {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-isotipo-box {
+            width: 32px;
+            height: 32px;
+            background-color: #5B3CC4; 
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-isotipo-box svg {
+            width: 20px;
+            height: 20px;
+            fill: #FFFFFF; 
+        }
+
+        .footer-brand-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #111111;
+            letter-spacing: -0.5px;
+        }
+
+        .footer-column-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px; 
+        }
+
+        .footer-link-item {
+            font-family: 'Roboto', sans-serif;
+            font-size: 14.5px;
+            font-weight: 500;
+            color: #111111;
+            text-decoration: none;
+            transition: color 0.15s ease;
+        }
+
+        .footer-link-item:hover {
+            color: #5B3CC4;
+        }
+
+        .footer-socials-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-social-circle {
+            width: 32px; 
+            height: 32px;
+            background-color: #111111; 
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        .footer-social-circle svg {
+            width: 16px; 
+            height: 16px;
+            fill: #FFFFFF; 
+        }
+
+        .footer-bottom-row {
+            width: 100%;
+            text-align: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            padding-top: 18px;
+        }
+
+        .footer-copyright-text {
+            font-family: 'Roboto', sans-serif;
+            font-size: 12px;
+            color: #555555;
+        }
+
+        /* Estilo general para bloques de texto informativos */
+        .bloque-parrafos {
+            font-family: 'Roboto', sans-serif;
+            font-size: 15px;
+            line-height: 1.8;
+            color: #222222;
+            text-align: justify; 
+        }
+
+        .bloque-parrafos p {
+            margin: 0 0 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="wiki-header-card">
+        <div class="header-main-row">
+            <div class="brand-group">
+                <h1 class="brand-title">Wiki <span>Diseño</span></h1>
+                <p class="brand-subtitle">Todo sobre diseño en un solo lugar.</p>
+            </div>
+            <div class="right-actions-group">
+                <div class="wiki-search-box">
+                    <span class="search-magnifier">🔍</span>
+                    <input type="text" placeholder="Buscar temas de diseño...">
+                </div>
+                <div class="user-profile-circle">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <nav class="categories-navbar">
+            <a href="#" class="category-tab"><span style="font-size:12px;">👤</span> Experiencia de usuario</a>
+            <a href="#" class="category-tab active-tab"><span style="font-size:12px;">🌐</span> Diseño web</a>
+            <a href="#" class="category-tab"><span style="font-size:12px;">💡</span> Design thinking</a>
+            <a href="#" class="category-tab"><span style="font-size:12px;">💻</span> Diseño centrado en el usuario</a>
+            <a href="#" class="category-tab"><span style="font-size:12px;">⚡</span> Diseño de interacción</a>
+            <a href="#" class="category-tab"><span style="font-size:12px;">👔</span> Arquitectura de la información</a>
+            <a href="#" class="category-tab"><span style="font-size:12px;">🧭</span> Diseño de navegación</a>
+            <a href="#" class="category-tab"><span style="font-size:12px;">👁️</span> Diseño visual</a>
+        </nav>
+    </header>
+
+    <div class="wrapper-principal">
+        
+        <section class="bloque-verde">
+            
+            <aside class="side-navigation-menu">
+                <div class="menu-title">
+                    <span style="font-size: 24px; margin-right: 4px;">🌐</span> Diseño Web
+                </div>
+
+                <nav class="cards-list">
+                    <a href="#parte-dos" class="nav-card">
+                        <div class="card-circle"></div>
+                        <span class="card-label">¿Qué es el diseño web?</span>
+                    </a>
+                    <a href="#parte-tres" class="nav-card">
+                        <div class="card-circle"></div>
+                        <span class="card-label">Importancia y Aplicaciones</span>
+                    </a>
+                    <a href="#parte-tres" class="nav-card">
+                        <div class="card-circle"></div>
+                        <span class="card-label">Tipos de diseño y tendencias</span>
+                    </a>
+                    <a href="#parte-tres" class="nav-card">
+                        <div class="card-circle"></div>
+                        <span class="card-label">Componentes</span>
+                    </a>
+                    <a href="#parte-tres" class="nav-card">
+                        <div class="card-circle"></div>
+                        <span class="card-label">Herramientas / layouts</span>
+                    </a>
+                </nav>
+            </aside>
+
+            <div class="panel-derecho-verde">
+                <div class="caja-astronauta-arriba">
+                    <img src="magnific__digital-illustration-an-astronaut-sitting-at-a-woo__83572.png" alt="Astronauta trabajando en escritorio">
+                </div>
+                
+                <article class="texto-apretado-derecha">
+                    <p>
+                        El diseño web consiste en la planificación, diseño, implementación y mantenimiento de sitios web. No se limita simplemente a la edición de datos, sino que abarca aspectos más amplios como el diseño de la arquitectura de información, la interactividad y la integración de medios como texto, imagen, enlaces y audio.
+                    </p>
+</article>
+            </div>
+
+        </section>
+
+        <section id="parte-dos" class="bloque-morado">
+            
+            <h2 class="titulo-seccion-principal">¿Qué es el Diseño Web?</h2>
+            
+            <article class="bloque-parrafos">
+                <p>
+                    El diseño web es una disciplina que combina creatividad, comunicación visual y tecnología para desarrollar sitios y plataformas digitales que permitan a los usuarios interactuar con la información de manera eficiente. Su función principal es organizar y presentar contenidos en internet mediante una estructura lógica y atractiva que facilite la navegación y mejore la experiencia del usuario.<br>Para lograrlo, el diseño web se apoya en diversos elementos, como la composición visual, la tipografía, la paleta de colores, las imágenes, los iconos y los recursos multimedia. Todos estos componentes trabajan en conjunto para transmitir mensajes de forma clara y generar una identidad visual coherente con los objetivos del sitio. Asimismo, el diseño web busca establecer una jerarquía de la información que ayude a los usuarios a encontrar rápidamente lo que necesitan.
+                </p>
+            </article>
+            
+            <div class="fila-inferior-morada">
+                
+                <div class="col-imagen-izq">
+                    <img src="cute-astronaut-playing-laptop-cartoon-vector-icon-illustration-science-technology-icon-isolated-flat/9800_1_2_02.jpg" alt="Ilustración conceptual de un astronauta flotando">
+                </div>
+
+                <article class="col-texto-der bloque-parrafos">
+                    <p>
+                        Además, el diseño web desempeña un papel fundamental en la comunicación digital, ya que influye directamente en la percepción que los usuarios tienen de una marca, empresa, institución o proyecto. Un sitio web estructurado de manera óptima retiene a los visitantes, disminuye la tasa de rebote y proyecta profesionalismo y credibilidad ante el público objetivo.
+                    </p>
+                    <p>
+                        Actualmente, el diseño web va más allá de la apariencia estética de una página. También considera factores relacionados con la usabilidad, la accesibilidad y la adaptabilidad a diferentes dispositivos y resoluciones de pantalla. Esto permite que los sitios web ofrezcan una experiencia consistente tanto en computadoras de escritorio como en dispositivos móviles.
+                    </p>
+                </article>
+
+            </div>
+
+        </section>
+
+        <section id="parte-tres" class="bloque-tres-seccion">
+            
+            <div class="fila-dos-columnas-estructural">
+                
+                <div class="col-texto-ancho bloque-parrafos">
+                    <p>
+                        El diseño web está presente en prácticamente todos los sitios y plataformas que utilizamos en Internet. Algunos ejemplos son:
+                    </p>
+                    
+                    <ul class="lista-sin-puntos-fiel">
+                        <li>Sitios corporativos: páginas de empresas que presentan información sobre sus servicios, historia, misión y formas de contacto. Por ejemplo, Apple o Coca-Cola México.</li>
+                        <li>Tiendas en línea (e-commerce): sitios diseñados para la venta de productos y servicios, con catálogos, buscadores, carritos de compra y métodos de pago. Por ejemplo, Amazon México o Mercado Libre México.</li>
+                        <li>Portales educativos: plataformas enfocadas en el aprendizaje y la consulta de información académica, como Khan Academy o Coursera.</li>
+                        <li>Redes sociales: sitios que permiten la interacción entre usuarios mediante publicaciones, mensajes y contenido multimedia, como Instagram o Facebook.</li>
+                        <li>Blogs y revistas digitales: páginas enfocadas en compartir artículos, noticias, opiniones o contenido especializado. Por ejemplo, Medium.</li>
+                        <li>Portafolios creativos: sitios utilizados por diseñadores, fotógrafos, ilustradores o artistas para exhibir sus trabajos y proyectos profesionales.</li>
+                        <li>Sitios gubernamentales e institucionales: páginas destinadas a proporcionar servicios, trámites e información pública a los ciudadanos.</li>
+                    </ul>
+
+                    <p>Ejemplos de elementos de diseño web</p>
+                    
+                    <p>
+                        También podemos identificar el diseño web en componentes específicos de una página, tales como:
+                    </p>
+                    
+                    <ul class="lista-con-puntos-compacta">
+                        <li>Menús de navegación</li>
+                        <li>Botones interactivos</li>
+                        <li>Banners e imágenes destacadas</li>
+                        <li>Formularios de contacto</li>
+                    </ul>
+                </div>
+
+                <div class="col-media-derecha">
+                    <video class="video-real-element" controls>
+                        <source src="Astronaut working on the computer 1.mp4" type="video/mp4">
+                        Tu navegador no soporta la reproducción de este video.
+                    </video>
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+<footer class="wiki-footer">
+        
+        <div class="footer-main-row">
+            
+            <div class="footer-brand-block">
+                <div class="footer-isotipo-box">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M22 6h-3.5l-2.5 9-2.5-9h-3l-2.5 9-2.5-9H2l4 14h3.5l2.5-9 2.5 9H18z"/>
+                    </svg>
+                </div>
+                <div class="footer-brand-title">Wiki diseño</div>
+            </div>
+
+            <div class="footer-column-links">
+                <a href="#" class="footer-link-item">Preguntas Frecuentes</a>
+                <a href="#" class="footer-link-item">Sobre Nosotros</a>
+            </div>
+
+            <div class="footer-column-links">
+                <a href="#" class="footer-link-item">Política de Privacidad</a>
+                <a href="#" class="footer-link-item">Aviso Legal</a>
+                <a href="#" class="footer-link-item">Contacto</a>
+            </div>
+
+            <div class="footer-socials-row">
+                <a href="#" class="footer-social-circle" title="Facebook">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12z"/>
+                    </svg>
+                </a>
+                <a href="#" class="footer-social-circle" title="Instagram">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                    </svg>
+                </a>
+                <a href="#" class="footer-social-circle" title="YouTube">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                </a>
+            </div>
+
+        </div>
+</footer>
+
+</body>
+</html>
